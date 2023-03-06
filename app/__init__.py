@@ -16,8 +16,8 @@ login =LoginManager(app)
 #this is my data based
 
 #this my data base manager
-db = SQLAlCHEMY(app)
-Migrate = Migrate(app, db)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 # login settings 

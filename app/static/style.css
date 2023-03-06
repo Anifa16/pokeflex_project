@@ -127,7 +127,7 @@ table {
     margin-bottom: 30px;
 }
 
-.login input{
+.login .form-control{
    width: 700px;
    height: 60px;
    background-color: rgb(233, 231, 225);
@@ -187,7 +187,7 @@ p{
     justify-content: center;
    
 }
-.names input{
+.names .form-control{
     width: 335px;
     height: 60px;
 

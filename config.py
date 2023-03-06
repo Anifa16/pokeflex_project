@@ -3,4 +3,10 @@ import os
 #my config file
 class Config():
     SECRET_KEY=os.environ.get('SECRET_KEY')
-    SQLALCHEMY_BASED_URL=os.environ.get('QLALCHEMY_BASED_UR')
+    REGISTER_USER={
+        'ann@gmail.com':{
+            'name': 'ann'
+            'password':'test124'
+        }
+    }
+    SQLALCHEMY_DATABASE_URI=os.environ.get('SQLALCHEMY_DATABASE_URI')
