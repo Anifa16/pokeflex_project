@@ -1,0 +1,47 @@
+{% extends 'home.html' %}
+
+{%block title%}Pokeflex{%endblock%}
+
+{%block content%}
+    <div class="container">
+        
+        <h1>Welcome to PokeFlex</h1>
+        <br>
+        <h6>Type a name of pokemon from our list and we can tell you everything about it <br> ["bulbasaur", "charmander", "squirtle", "pikachu", "eevee"]</h6>
+
+        <div class="search">
+            <form action="/pokeflex" method="POST">
+                <label for="Pokemon_Name"></label>
+                <input type="text" name="name" id="name" class="form-control"/>
+                <br><br>
+                <button type="submit" value = Submit id="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div>
+      <small style="color: red">{{error}}</small>
+    </div>
+    <table>
+        <tr>
+          <th>Pokemon</th>
+          <th>Abilities</th>
+          <th>Sprite URL</th>
+          <th>Base Experience</th>
+          <th>Attack Base Stat</th>
+          <th>HP Base Stat</th>
+          <th>Defense Base Stat</th>
+        </tr>
+        {% for name, data in pokemon_data.items() %}
+          <tr>
+            <td>{{ name }}</td>
+            <td>{{ data.abilities | join(', ') }}</td>
+            <td><img src="{{ data.sprite_url }}" alt="{{ name }} sprite"></td>
+            <td>{{ data.base_experience }}</td>
+            <td>{{ data.attack_base_stat }}</td>
+            <td>{{ data.hp_base_stat }}</td>
+            <td>{{ data.defense_base_stat }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+
+{%endblock%}

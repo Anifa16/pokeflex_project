@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.nav_bar{
+   width: 100%;
+   height: 125px;
+   background-color: rgb(235, 190, 27);
+}
+nav{
+    display: flex;
+    gap: 1000px;
+}
+nav ul{
+    display: flex;
+    gap:  30px;
+    list-style: none;
+    margin-top: 35px;
+    margin-left: 150px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: black;
+    font-family: sans-serif;
+    font-weight: 1000px;
+}
+img{
+    width: 100px;
+    margin-left: 50px;
+}
+a:hover{
+    background-color: rgb(200, 15, 15);
+}
+
+body{
+    background-image: url(../static/backgroung.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+.container{
+    
+    width: 1000px;
+    height: 500px;
+    background-color: rgb(222, 190, 45);
+    margin-left: 400px;
+    border-radius: 20px;
+
+   
+
+}
+
+h1{
+    text-align: center;
+    margin-top: 100px;
+    color:hwb(208 7% 9%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 60px;
+    padding: 30px;
+    padding-bottom: 10px;
+}
+h6{
+    text-align: center;
+    color:hwb(4 26% 23%);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+
+    
+    
+}
+.search{
+    text-align: center;
+    padding-top: 5px;
+    margin-bottom: 30px;
+}
+
+
+.search .form-control{
+   border: 1px red solid ;
+   width: 700px;
+   height: 50px;
+   border-radius: 20px;
+   background-color: oldlace;
+   margin-top: 30px;
+
+}
+
+#btn{
+    border: 1px rgb(142, 46, 46) solid ;
+    width: 300px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: hwb(208 7% 9%);;
+    margin-top: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: hwb(0 20% 78%);
+
+}
+table {
+    border-collapse: collapse;
+    width: 1000px;
+    margin-left: 400PX;
+    background-color: rgb(222, 190, 45);
+    border-radius: 20px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #8ffa37;
+  }
+
+.login{
+    text-align: center;
+    padding-top: 5px;
+    margin-bottom: 30px;
+}
+
+.login input{
+   width: 700px;
+   height: 60px;
+   background-color: rgb(233, 231, 225);
+   margin-top: 30px;
+   border-radius: 15px;
+   border: none;
+   
+
+}
+
+input::placeholder{
+    color: rgb(129, 122, 122);
+    font-size: 20px;
+    left: 50px;
+    font-family: sans-serif;
+    text-align: center;
+    font-style: italic;
+}
+
+ .cont-login{
+    width: 1000px;
+    height: 500px;
+    background-color: rgba(255,225,255,0.20);
+    margin-left: 400px;
+    border-radius: 20px;
+
+
+}
+
+.login .btn{
+    width: 300px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: hwb(208 7% 9%);;
+    margin-top: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: hwb(0 20% 78%);
+    border: none;
+}
+p{
+    color: yellow;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.cont-register{
+    width: 1000px;
+    height: 800px;
+    background-color: rgba(255,225,255,0.20);
+    margin-left: 400px;
+    border-radius: 20px;
+}
+.names{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+   
+}
+.names input{
+    width: 335px;
+    height: 60px;
+
+}

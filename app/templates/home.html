@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App-{%block title%}{%endblock%}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+   <div class="nav_bar">
+    <nav>
+        <div>
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="icon logo">
+        </div>
+        <ul>
+            <li><a href="{{ url_for('pokeflex') }}">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="{{ url_for('login') }}">Login/Register</a></li>
+            <li><a href="#">News</a></li>
+      </ul>
+    </nav>
+   </div>
+
+    {%block content%}
+
+
+    {%endblock%}
+
+
+</body>
+</html>
