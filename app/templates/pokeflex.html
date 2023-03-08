@@ -1,4 +1,4 @@
-{% extends 'home.html' %}
+{% extends 'includes/nav-bar.html' %}
 
 {%block title%}Pokeflex{%endblock%}
 
@@ -43,5 +43,9 @@
           </tr>
         {% endfor %}
       </table>
+
+      <div style="color:red">
+        <small>{{error}}</small>
+      </div>
 
 {%endblock%}

@@ -1,14 +1,14 @@
 from flask import render_template,request
 import requests
-from app.forms import LoginForm
-from app import app
+from . import main
+from flask_login import login_required
 
-
-@app.route('/')
+@main.route('/')
 def home():
    return render_template('home.html')
 
-@app.route('/pokeflex', methods=['GET', 'POST'])
+@main.route('/pokeflex', methods=['GET', 'POST'])
+@login_required
 def pokeflex():
     pokemon_names = ["bulbasaur", "charmander", "squirtle", "pikachu", "eevee"] # this is my list if my pokemons
     pokemon_data = {} # once I get them from my api url I will store them in pokemon data 
@@ -46,28 +46,5 @@ def pokeflex():
     
     return render_template('pokeflex.html', pokemon_data=pokemon_data, name=name)
 
-
-
-@app.route('/login', methods=['GET','POST'])
-def login():
-    form =LoginForm()
-    if request.method =='POST':
-        email = form.email.data.lower()
-        password = form.password.data
-        if email in app.config.get('REGISTER_USER')and password == app.config.get('REGISTER_USER').get(email).get('password'):
-            return f'Seccessful Logged into your account{app.config.get("REGISTER_USER").get(email).get("name")}'
-        else:
-            error = 'Invalid email or passward'
-            return render_template('login.html', error=error)
-    return render_template('login.html', form=form)
-
-
-@app.route('/register', methods=['GET','POST'])
-def register():
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
-    email = request.form.get('email')
-    last_name = request.form.get('password')
-    return render_template('register.html')
 
 

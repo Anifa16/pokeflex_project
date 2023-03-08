@@ -8,19 +8,13 @@
         <div class="login">
             <form action="/register" method="POST">
                 <div class="names">
-                    <input type="first_name" name="first_name" id="first_name" placeholder="FirstName"/>
                     {{form.first_name(class='form-control')}}
-                    <input type="last_name" name="last_name" id="last_name" placeholder="LastName"/>
                     {{form.last_name(class='form-control')}}
                 </div>
-                <input type="email" name="email" id="email" placeholder="Email@gmail.com"/>
                 {{form.email(class='form-control')}}
-                <input type="password" name="password" id="password" placeholder="Password"/>
                 {{form.password(class='form-control')}}
-                <input type="confirm" name="confirm" id="confirm" placeholder="Confirm your Passward"/>
                 {{form.confirm_password(class='form-control')}}
                 <br><br>
-                <button type="submit" value = Submit class="btn">Submit</button>
                 {{form.submit(class="btn")}}
                 <p>Do you already have an account with us if so click <a href="{{ url_for('login') }}" style="color: black">Login</a> to login into your account</p>
             </form>
