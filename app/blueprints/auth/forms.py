@@ -5,21 +5,21 @@ from app.models import User
 
 # FORMS SECTION
 class LoginForm(FlaskForm):
-    email = EmailField('Email:', validators=[DataRequired()])
-    password = PasswordField('Password:', validators=[DataRequired()])
+    email = EmailField('Email:', validators=[DataRequired()],render_kw={"placeholder":"Email"})
+    password = PasswordField('Password:', validators=[DataRequired()],render_kw={"placeholder":"Passward"})
     submit_btn = SubmitField('Login')
 
 class RegisterForm(FlaskForm):
-    first_name = StringField('First Name:', validators=[DataRequired()])
-    last_name = StringField('Last Name:', validators=[DataRequired()])
-    email = EmailField('Email:', validators=[DataRequired()])
-    password = PasswordField('Password: ', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password: ', validators=[DataRequired(), EqualTo('password')])
+    first_name = StringField('First Name:', validators=[DataRequired()],render_kw={"placeholder":"AnifaName"})
+    last_name = StringField('Last Name:', validators=[DataRequired()],render_kw={"placeholder":"LastName"})
+    email = EmailField('Email:', validators=[DataRequired()],render_kw={"placeholder":"Email"})
+    password = PasswordField('Password: ', validators=[DataRequired()],render_kw={"placeholder":"Passward"})
+    confirm_password = PasswordField('Confirm Password: ', validators=[DataRequired(), EqualTo('password')],render_kw={"placeholder":"Confirm Passward"})
     submit_btn = SubmitField('Register')
 
 class EditProfileForm(FlaskForm):
-    first_name = StringField('First Name:', validators=[DataRequired()])
-    last_name = StringField('Last Name:', validators=[DataRequired()])
-    email = EmailField('Email:', validators=[DataRequired()])
+    first_name = StringField('First Name:', validators=[DataRequired()],render_kw={"placeholder":"AnifaName"})
+    last_name = StringField('Last Name:', validators=[DataRequired()],render_kw={"placeholder":"LastName"})
+    email = EmailField('Email:', validators=[DataRequired()],render_kw={"placeholder":"Email"})
     submit_btn = SubmitField('Update')
 

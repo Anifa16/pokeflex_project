@@ -2,7 +2,7 @@ from flask import request, render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
 from .forms import PostForm
 from . import post
-from app.models import post
+from app.models import Post
 
 
 # Create a Post

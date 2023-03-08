@@ -15,8 +15,8 @@
                 {{form.password(class='form-control')}}
                 {{form.confirm_password(class='form-control')}}
                 <br><br>
-                {{form.submit(class="btn")}}
-                <p>Do you already have an account with us if so click <a href="{{ url_for('login') }}" style="color: black">Login</a> to login into your account</p>
+                {{form.submit_btn(class="btn")}}
+                <p>Do you already have an account with us if so click <a href="{{ url_for('auth.login') }}" style="color: black">Login</a> to login into your account</p>
             </form>
         </div>
     </div>

@@ -6,14 +6,13 @@
 <div class="cont-register">
     <h1 style="background-image: linear-gradient(to right, red, yellow);">Register Into your Account</h1>
     <div class="login">
-        <form action="/logout" method="POST">
-            <div class="names">
-                {{form.first_name(class='form-control')}}
-                {{form.last_name(class='form-control')}}
-            </div>
+        <form action="/login" method="POST">
             {{form.email(class='form-control')}}
+            {{form.password(class='form-control')}}
             <br>
-            {{form.update(class="btn")}}
+            {{form.submit_btn(class="btn")}}
+            <p>Do you don't already have an account with us if so click <a href="{{ url_for('auth.register') }}" style="color: black">Register</a> for an acount with us</p>
+
         </form>
     </div>
 </div>

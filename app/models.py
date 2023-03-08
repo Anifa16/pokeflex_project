@@ -3,7 +3,6 @@ from flask_login import UserMixin # Only use UserMixin for the User Model
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 #this is how we declear a table for our resigester users
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,14 +44,14 @@ class User(UserMixin, db.Model):
     def load_user(user_id):
         return User.query.get(user_id)
 
-    class Post(db.Model):
-        id=db.Column(db.Integer, primary_key=True)
-        img_url=db.Column(db.String, nullable=False)
-        title=db.Column(db.String)
-        caption=db.Column(db.String)
-        date_created=db.Column(db.DateTime, default=datetime.utcnow)
-        # Foreign Key to User Table
-        user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+class Post(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    img_url=db.Column(db.String, nullable=False)
+    title=db.Column(db.String)
+    caption=db.Column(db.String)
+    date_created=db.Column(db.DateTime, default=datetime.utcnow)
+    # Foreign Key to User Table
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
     # Use this method to register our post attributes

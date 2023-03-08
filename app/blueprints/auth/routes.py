@@ -18,14 +18,12 @@ def login():
         if queried_user and check_password_hash(queried_user.password, password):
             login_user(queried_user)
             flash(f'Successfully Logged In! Welcome back, {queried_user.first_name}!', 'success')            
-            return redirect(url_for('main.home'))
+            return redirect(url_for('main.pokeflex'))
         else:
             error = 'Incorrect Email/Password!'
             flash(f'{error}', 'danger')
             return render_template('login.html', error=error, form=form)
     return render_template('login.html', form=form)
-
-
 
 
 @auth.route('/register', methods=['GET', 'POST'])
@@ -49,7 +47,6 @@ def register():
 
         # Save user to database
         new_user.save_to_db()
-
         flash('You have successfully registered!', 'success')
         return redirect(url_for('auth.login'))
     return render_template('register.html', form=form)
@@ -73,12 +70,12 @@ def edit_profile():
         if queried_user:
             flash('Email is already in use.', 'danger')
             return redirect(url_for('auth.edit_profile'))
-        else:
-           # add changes to db
-           current_user.from_dict(new_user_data)
-           current_user.save_to_db()
-           flash('Profile Updated!', 'success')
-           return redirect(url_for('main.home'))
+        else: 
+            # add changes to db
+            current_user.from_dict(new_user_data)
+            current_user.save_to_db()
+            flash('Profile Updated!', 'success')
+            return redirect(url_for('main.pokeflex'))
 
     return render_template('edit_profile.html', form=form)
     
