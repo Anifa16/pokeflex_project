@@ -90,26 +90,23 @@ def catch_pokemon():
         error = 'That pokemon is not avaiable in our data'
         return render_template('pokeflex.html', error=error)
    
-        data = response.json()
-        new_pokemon=PokemonCaptured(
-            name=pokemon_name,
-            new_pokemon.ability=data['abilities'][0]['ability']['name'],
-            new_pokemon.base_experience=data['base_experience'],
-            new_pokemon.sprite_url=data['sprites']['front_default'],
-            new_pokemon.attack_base_stat=data['stats'][1]['base_stat'],
-            new_pokemon.hp_base_stat=data['stats'][0]['base_stat'],
-            new_pokemon.defense_base_stat=data['stats'][2]['base_stat'] 
-            )
-        # Save the new PokemonCaptured object to the database
-            new_pokemon.save_to_db()
+    data = response.json()
+    new_pokemon.ability=data['abilities'][0]['ability']['name']
+    new_pokemon.base_experience=data['base_experience']
+    new_pokemon.sprite_url=data['sprites']['front_default']
+    new_pokemon.attack_base_stat=data['stats'][1]['base_stat']
+    new_pokemon.hp_base_stat=data['stats'][0]['base_stat']
+    new_pokemon.defense_base_stat=data['stats'][2]['base_stat']
+    # Save the new PokemonCaptured object to the database
+    new_pokemon.save_to_db()
             
-            # Add the new Pokemon to the user's collection
-            user = User.query.get(user_id)
-            user.pokemon_owned.append(new_pokemon)
-            user.save_to_db()
+     # Add the new Pokemon to the user's collection
+    user = User.query.get(user_id)
+    user.pokemon_owned.append(new_pokemon)
+    user.save_to_db()
             
-        flash f'You have caught a {pokemon_name}'
-        return render_template('catch.html', pokemon=new_pokemon)
+    flash(f'You have caught a {pokemon_name}')
+    return render_template('catch.html', pokemon=new_pokemon)
 
 # to remove the pokemon from users list 
 @main.route('/pokemon/remove', methods=['POST'])
@@ -129,7 +126,7 @@ def remove_pokemon():
     return jsonify({'message': ' you removed successfully Pokemon!'})
 
 
-app.route('/users')
+@main.route('/users')
 @login_required
 def list_users():
     current_user = get_current_user_id() # replace with code to get current user ID
@@ -143,102 +140,64 @@ def list_users():
 @login_required
 def battle_user(user_id):
     current_user = get_current_user_id() # replace with code to get current user ID
-    
     user = User.query.get(user_id)
     if not user:
         abort(404)
     
-    current_user_pokemon = current_user.pokemon_owned
-    user_pokemon = user.pokemon_owned
-    
+    current_user_pokemon = PokemonCaptured.query.filter_by(user_id=current_user_id).all()
+    user_pokemon = PokemonCaptured.query.filter_by(user_id=user_id).all()
+   
     # Get the stats and images for each Pokemon
-    current_user_pokemon_data = []
-    for pokemon in current_user_pokemon:
-        url = f"https://pokeapi.co/api/v2/pokemon/{pokemon.name}/"
-        response = requests.get(url)
-        data = response.json()
-        pokemon_data = {
-            'name': pokemon.name,
-            'ability': data['abilities'][0]['ability']['name'],
-            'base_experience': data['base_experience'],
-            'sprite_url': data['sprites']['front_default'],
-            'attack_base_stat': data['stats'][1]['base_stat'],
-            'hp_base_stat': data['stats'][0]['base_stat'],
-            'defense_base_stat': data['stats'][2]['base_stat']
-        }
-        current_user_pokemon_data.append(pokemon_data)
-    
-    user_pokemon_data = []
-    for pokemon in user_pokemon:
-        url = f"https://pokeapi.co/api/v2/pokemon/{pokemon.name}/"
-        response = requests.get(url)
-        data = response.json()
-        pokemon_data = {
-            'name': pokemon.name,
-            'ability': data['abilities'][0]['ability']['name'],
-            'base_experience': data['base_experience'],
-            'sprite_url': data['sprites']['front_default'],
-            'attack_base_stat': data['stats'][1]['base_stat'],
-            'hp_base_stat': data['stats'][0]['base_stat'],
-            'defense_base_stat': data['stats'][2]['base_stat']
-        }
-        user_pokemon_data.append(pokemon_data)
-
-@main.route('/battle/<int:user_id>', methods=['GET', 'POST'])
-@login_required
-def battle(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        abort(404)
-
     if request.method == 'POST':
         # Get the user's selected pokemon from the form data
         pokemon_name = request.form['pokemon_name']
-        user_pokemon = PokemonCaptured.query.filter_by(name=pokemon_name, user_id=current_user.id).first()
-        if not user_pokemon:
-            flash("You don't have that Pokemon!")
-            return redirect(url_for('battle', user_id=user_id))
+        current_user_pokemon_selected = PokemonCaptured.query
+                # Get the stats and images for the user's selected pokemon
+        url = f"https://pokeapi.co/api/v2/pokemon/{user_pokemon.name}/"
+        response = requests.get(url)
+        data = response.json()
+        user_pokemon_data = {
+            'name': user_pokemon.name,
+            'ability': data['abilities'][0]['ability']['name'],
+            'base_experience': data['base_experience'],
+            'sprite_url': data['sprites']['front_default'],
+            'attack_base_stat': data['stats'][1]['base_stat'],
+            'hp_base_stat': data['stats'][0]['base_stat'],
+            'defense_base_stat': data['stats'][2]['base_stat']
+        }
         
-        # Get the other user's random pokemon
-        other_user_pokemon = user.get_random_pokemon()
-
-        # Determine the winner based on the pokemon stats
-        if user_pokemon.attack_base_stat + user_pokemon.defense_base_stat + user_pokemon.hp_base_stat > \
-            other_user_pokemon.attack_base_stat + other_user_pokemon.defense_base_stat + other_user_pokemon.hp_base_stat:
+        # Choose a random pokemon from the other user's collection
+        other_user_pokemon = random.choice(user.pokemon_owned)
+        
+        # Get the stats and images for the other user's selected pokemon
+        url = f"https://pokeapi.co/api/v2/pokemon/{other_user_pokemon.name}/"
+        response = requests.get(url)
+        data = response.json()
+        other_user_pokemon_data = {
+            'name': other_user_pokemon.name,
+            'ability': data['abilities'][0]['ability']['name'],
+            'base_experience': data['base_experience'],
+            'sprite_url': data['sprites']['front_default'],
+            'attack_base_stat': data['stats'][1]['base_stat'],
+            'hp_base_stat': data['stats'][0]['base_stat'],
+            'defense_base_stat': data['stats'][2]['base_stat']
+        }
+        
+        # Determine the winner of the battle based on base experience
+        if user_pokemon_data['base_experience'] > other_user_pokemon_data['base_experience']:
             winner = current_user
-            loser = user
         else:
             winner = user
-            loser = current_user
         
-        # Remove the loser's pokemon from their collection
-        removed_pokemon = loser.remove_random_pokemon()
-        
-        # Render the battle result template
-        return render_template('battle_result.html', winner=winner, loser=loser, winner_pokemon=user_pokemon,
-                               loser_pokemon=other_user_pokemon, removed_pokemon=removed_pokemon)
+        return render_template('battle_results.html', 
+                               user_pokemon=user_pokemon_data, 
+                               other_user_pokemon=other_user_pokemon_data, 
+                               winner=winner)
 
-    # If it's a GET request, render the battle template with the user's pokemon data and the other user's data
-    user_pokemon_data = []
-    for pokemon in current_user.pokemon_owned:
-        pokemon_data = {
-            'name': pokemon.name,
-            'sprite_url': pokemon.sprite_url,
-            'attack': pokemon.attack_base_stat,
-            'defense': pokemon.defense_base_stat,
-            'hp': pokemon.hp_base_stat
-        }
-        user_pokemon_data.append(pokemon_data)
+    else:
+        # Get a list of the other user's pokemon for the user to choose from
+        other_user_pokemon = user.pokemon_owned
+        return render_template('battle.html', other_user_pokemon=other_user_pokemon)
 
-    other_user_pokemon_data = []
-    for pokemon in user.pokemon_owned:
-        pokemon_data = {
-            'name': pokemon.name,
-            'sprite_url': pokemon.sprite_url,
-            'attack': pokemon.attack_base_stat,
-            'defense': pokemon.defense_base_stat,
-            'hp': pokemon.hp_base_stat
-        }
-        other_user_pokemon_data.append(pokemon_data)
 
-    return render_template('battle.html', user=user, user_pokemon_data=user_pokemon_data, other_user_pokemon_data=other_user_pokemon_data)
+
