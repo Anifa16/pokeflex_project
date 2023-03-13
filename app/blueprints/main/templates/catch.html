@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  {% if error %}
+    <p>{{ error }}</p>
+  {% else %}
+    <p>You caught a new Pokemon!</p>
+    <img src="{{ pokemon.sprite_url }}" alt="{{ pokemon.name }}">
+    <p>Name: {{ pokemon.name }}</p>
+    <p>Ability: {{ pokemon.ability }}</p>
+    <p>Base experience: {{ pokemon.base_experience }}</p>
+    <p>Attack base stat: {{ pokemon.attack_base_stat }}</p>
+    <p>HP base stat: {{ pokemon.hp_base_stat }}</p>
+    <p>Defense base stat: {{ pokemon.defense_base_stat }}</p>
+  {% endif %}
+{% endblock %}

@@ -3,19 +3,17 @@
 {%block title%}Login{%endblock%}
 
 {%block content%}
-{%%}
     <div class="cont-login">
-        <h1 style="background-image: linear-gradient(to right, red, yellow)">Sign Into your Account</h1>
+        <h1 style="background-image: linear-gradient(to right, red, yellow)">Edit your Frofile</h1>
         <div class="login">
-            <form action="/edit_profile" method="POST">
+            <form action="{{ url_for('auth.edit_profile') }}" method="POST">
                 {{form.hidden_tag()}}
+                {{form.first_name(class='form-control')}}
+                {{form.last_name(class='form-control')}}
                 {{form.email(class='form-control')}}
                 <br><br>
-                {{form.password(class="form-control")}}
-                <br><br>
-                {{form.Update(class="btn")}}
+                {{form.submit_btn(class="btn")}}
                 <br>
-                <p style="color: yellow">Are you a new user if so click <a href="{{ url_for('register') }}" style="color: black">Register</a> to become a new member of PokeFlex</p>
             </form>
         </div>
     </div>

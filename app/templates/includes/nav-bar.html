@@ -18,19 +18,25 @@
         <div>
             <img src="{{ url_for('static', filename='logo.png') }}" alt="icon logo">
         </div>
-        <ul>
-            <li><a href="{{ url_for('pokeflex') }}">Home</a></li>
-            <li><a href="{{ url_for('edit_profile') }}">About Us</a></li>
-            <li><a href="{{ url_for('create_post') }}">Post</a></li>
-            <button><a href="{{ url_for('logout') }}">Logout</a></button>
-
-      </ul>
+        <div>
+            <ul>
+                {% if current_user.is_authenticated %}
+                <li><a>Hello, {{current_user.first_name}}</a>
+                <li><a href="{{ url_for('main.pokeflex') }}">Home</a></li>
+                <li><a href="{{ url_for('post.view_post') }}">Feed</a></li>
+                <li><a href="{{ url_for('post.create_post') }}">Post</a></li>
+                <li><a href="{{url_for('auth.edit_profile')}}">Profile</a>
+                </li><a href="{{url_for('main.catch')}}"></a></li>
+                <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
+                {%else%}
+                <li><a href="{{url_for('auth.login')}}">Login</a></li>
+                <li><a href="{{url_for('auth.register')}}">Rigester</a></li>
+            </ul>
+            {% endif %}
+        </div>
+            
     </nav>
    </div>
-
-    {%block content%}
-
-    {%endblock%}
     <div style="color:red">
         <small>{{error}}</small>
     </div>

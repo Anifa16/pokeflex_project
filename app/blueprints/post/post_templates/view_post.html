@@ -5,17 +5,22 @@ Feed
 {% endblock %}
 
 {% block content %}
-    <h1>Pokies Posts!</h1>
-    {% if posts %}
-    {% for post in posts %}
-    <div class="card" style="width: 25rem;">
+  <div class="posts-cont">
+      <h1>Pokies Posts!</h1>
+    {% if post %}
+    {% for post in post %}
+    <div class="post">
+      <div class="imag"  href="{{url_for('post.view_single_post', post_id=post.id)}}">
         <img class="card-img-top" src="{{post.img_url}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
           <p class="card-text">{{post.caption}}</p>
-          <small class="card-subtitle text-muted">{{moment(post.date_created).fromNow()}}</small>
+          <small class="card-subtitle-text-muted">{{post.author.first_name}} - {{moment(post.date_created).fromNow()}}</small>
         </div>
+      </div>
     </div>
+   
     {% endfor %}
     {% endif %}
+  </div>
 {% endblock %}

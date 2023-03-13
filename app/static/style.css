@@ -13,7 +13,7 @@ nav{
 }
 nav ul{
     display: flex;
-    gap:  30px;
+    gap: 30px;
     list-style: none;
     margin-top: 35px;
     margin-left: 150px;
@@ -23,6 +23,16 @@ nav ul li a{
     color: black;
     font-family: sans-serif;
     font-weight: 1000px;
+}
+nav ul li ul.dropdown li{
+    display: block;
+}
+nav ul li ul.dropdown{
+    width: 100%;
+    background: #22438c;
+    position: absolute;
+    z-index: 999;
+    display: none;
 }
 img{
     width: 100px;
@@ -47,9 +57,6 @@ body{
     background-color: rgb(222, 190, 45);
     margin-left: 400px;
     border-radius: 20px;
-
-   
-
 }
 
 h1{
@@ -71,9 +78,9 @@ h6{
     
 }
 .search{
-    text-align: center;
-    padding-top: 5px;
-    margin-bottom: 30px;
+ display: flex;
+ justify-content: center;
+
 }
 
 
@@ -84,19 +91,20 @@ h6{
    border-radius: 20px;
    background-color: oldlace;
    margin-top: 30px;
+  
 
 }
 
 #btn{
-    border: 1px rgb(142, 46, 46) solid ;
     width: 300px;
     height: 50px;
     border-radius: 30px;
     background-color: hwb(208 7% 9%);;
-    margin-top: 15px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     color: hwb(0 20% 78%);
+    margin-left: 200px;
+    border: none;
 
 }
 table {
@@ -122,9 +130,8 @@ table {
   }
 
 .login{
-    text-align: center;
-    padding-top: 5px;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .login .form-control{
@@ -161,17 +168,17 @@ input::placeholder{
     width: 300px;
     height: 50px;
     border-radius: 30px;
-    background-color: hwb(208 7% 9%);;
-    margin-top: 15px;
-    font-size: 30px;
+    background-color: hwb(208 7% 9%);
+    font-size: 20px;
     font-weight: bold;
     color: hwb(0 20% 78%);
-    border: none;
+    margin-left: 200px;
 }
 p{
     color: yellow;
     margin-top: 15px;
     font-weight: bold;
+    margin-left: 20px;
 }
 
 .cont-register{
@@ -180,7 +187,10 @@ p{
     background-color: rgba(255,225,255,0.20);
     margin-left: 400px;
     border-radius: 20px;
+    
+   
 }
+
 .names{
     display: flex;
     gap: 30px;
@@ -191,4 +201,38 @@ p{
     width: 335px;
     height: 60px;
 
+
+
+}
+.posts-cont{
+    width: 1000px;
+    height: 100%;
+    background-color: greenyellow;
+    margin-left: 400px;
+    align-items: center;
+
+}
+
+.posts-cont img{
+     width: 500px;
+     height: 400px;
+     margin-left: 250px;
+}
+
+.card-title{
+    font-size: 30px;
+    margin-left: 400px;
+    margin-top: 3px;
+}
+
+.card-text{
+    font-size: 20px;
+    margin-left: 400px;
+    margin-top: 3px;
+    color: black;
+}
+.card-subtitle-text-muted{
+    margin-left: 400px;
+    margin-bottom: 30px;
+    color: black;
 }

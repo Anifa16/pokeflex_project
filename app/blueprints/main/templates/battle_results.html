@@ -1,0 +1,23 @@
+{%extend home.html%}
+{%block title%}Battle Result{%endblock%}
+    <h2>Winner: {{ winner.username }}</h2>
+    <h3>{{ winner_pokemon.name }} ({{ winner_pokemon.level }})</h3>
+    <img src="{{ winner_pokemon.front_shiny_image_url }}" alt="{{ winner_pokemon.name }}">
+    <ul>
+    <li>HP: {{ winner_pokemon.hp }}/{{ winner_pokemon.max_hp }}</li>
+    <li>Attack: {{ winner_pokemon.attack }}</li>
+    <li>Defense: {{ winner_pokemon.defense }}</li>
+    <li>Speed: {{ winner_pokemon.speed }}</li>
+    </ul>
+    <h3>{{ loser_pokemon.name }} ({{ loser_pokemon.level }})</h3>
+    <img src="{{ loser_pokemon.front_shiny_image_url }}" alt="{{ loser_pokemon.name }}">
+    <ul>
+    <li>HP: {{ loser_pokemon.hp }}/{{ loser_pokemon.max_hp }}</li>
+    <li>Attack: {{ loser_pokemon.attack }}</li>
+    <li>Defense: {{ loser_pokemon.defense }}</li>
+    <li>Speed: {{ loser_pokemon.speed }}</li>
+    </ul>
+    <form action="{{ url_for('users') }}" method="get">
+    <button type="submit">Back to Users</button>
+    </form>
+{%endblock%}

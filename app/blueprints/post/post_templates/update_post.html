@@ -4,15 +4,15 @@
 
 {%block content%}
     <div class="cont-register">
-        <h1 style="background-image: linear-gradient(to right, red, yellow);">Create a Post</h1>
+        <h1 style="background-image: linear-gradient(to right, red, yellow);">Register Into your Account</h1>
         <div class="login">
-            <form action="{{url_for('post.create_post')}}" method="POST">
+            <form action="{{url_for('posts.update_post', post_id=post.id)}}" method="POST">
                 {{form.hidden_tag()}}
-              
-                    {{form.img_url(class="imag")}}
+                <div class="names">
+                    {{form.img_url(class='form-control')}}
                     {{form.title(class='form-control')}}
-               
-                {{form.caption(class='caption')}}
+                </div>
+                {{form.caption(class='form-control')}}
                 <br><br>
                 {{form.submit(class="btn")}}
             </form>

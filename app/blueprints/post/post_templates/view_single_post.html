@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+
+{% block title%}
+Post - {{post.title}}
+{% endblock %}
+
+{% block content %}
+    {% if current_user.id == post.user_id %}
+    <h1>Your Post</h1>
+    <div class="card" style="width: 25rem;">
+        <img class="card-img-top" src="{{post.img_url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{post.caption}}</p>
+          <small class="card-subtitle text-muted">{{post.author.first_name}} - {{moment(post.date_created).fromNow()}}</small>
+        </div>
+        <a class="btn btn-success mb-2 mx-auto" style="width: 50%" href="{{url_for('post.update_post', post_id=post.id)}}">Update</a>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger mx-auto" style="width: 50%" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Delete
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to Delete your post?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger" href="{{url_for('post.delete_post', post_id=post.id)}}">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% else %}
+    <h1>{{post.author.first_name}}'s Post</h1>
+    <div class="card" style="width: 25rem;">
+        <img class="card-img-top" src="{{post.img_url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{post.caption}}</p>
+          <small class="card-subtitle text-muted">{{post.author.first_name}} - {{moment(post.date_created).fromNow()}}</small>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+

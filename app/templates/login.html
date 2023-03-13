@@ -6,7 +6,8 @@
 <div class="cont-register">
     <h1 style="background-image: linear-gradient(to right, red, yellow);">Register Into your Account</h1>
     <div class="login">
-        <form action="/login" method="POST">
+        <form action="{{ url_for('auth.login') }}" method="POST">
+            {{form.hidden_tag()}}
             {{form.email(class='form-control')}}
             {{form.password(class='form-control')}}
             <br>

@@ -13,18 +13,7 @@
     {{ moment.include_moment() }}
 </head>
 <body>
-   <div class="nav_bar">
-    <nav>
-        <div>
-            <img src="{{ url_for('static', filename='logo.png') }}" alt="icon logo">
-        </div>
-        <ul>
-            <li><a href="{{ url_for('auth.login') }}">Login/Register</a></li>
-            <li><a href="#">Learn more</a></li>
-            <li><a href="#">Contect Us</a></li>
-      </ul>
-    </nav>
-   </div>
+    {% include './includes/nav-bar.html' %}
 
     {%block content%}
 
